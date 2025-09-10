@@ -26,7 +26,7 @@ import pool from "../configs/connectDB.js";
 
 let getHomePage = async (req, res) => {
     try {
-        const [rows] = await pool.query("SELECT * FROM users WHERE id = ?", [3]);
+        const [rows] = await pool.query("SELECT * FROM users ");
 
         const data = rows.map((row) => ({
             id: row.id,
@@ -38,7 +38,7 @@ let getHomePage = async (req, res) => {
 
         console.log("data inside:", data);
 
-        return res.render("index.ejs", { dataUser: JSON.stringify(data) });
+        return res.render("index.ejs", { dataUser: data });
     } catch (err) {
         console.error("Lỗi MySQL:", err);
         return res.status(500).send("Lỗi server!");
