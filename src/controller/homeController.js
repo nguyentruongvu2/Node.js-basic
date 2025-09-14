@@ -26,23 +26,23 @@ import pool from "../configs/connectDB.js";
 
 let getHomePage = async (req, res) => {
     try {
-        const [rows] = await pool.query("SELECT * FROM users ");
+        const [rows, fields] = await pool.query("SELECT * FROM users ");
+        let check = await pool.query("SELECT * FROM users ");
+        console.log("data inside:", check);
 
-        const data = rows.map((row) => ({
-            id: row.id,
-            email: row.email,
-            address: row.address,
-            fristName: row.firstName,
-            lastName: row.lastName,
-        }));
-
-        console.log("data inside:", data);
-
-        return res.render("index.ejs", { dataUser: data });
+        return res.render("index.ejs", { dataUser: rows });
     } catch (err) {
         console.error("Lỗi MySQL:", err);
         return res.status(500).send("Lỗi server!");
     }
 };
+let getDetailpage = async (req, res) => {
+    let userId = req.params.id
+    let [user] = await pool.query(`select * from users where id = ?`, [userId])
+    console.log("check id", userId)
+    return res.send(JSON.stringify(user))
+}
 
-export default getHomePage;
+
+
+export default { getHomePage, getDetailpage }
