@@ -44,10 +44,10 @@ let getDetailpage = async (req, res) => {
 };
 let createNewUser = async (req, res) => {
   console.log("Check req:", req.body);
-  let { id, firstName, lastName, email, address } = req.body;
+  let { firstName, lastName, email, address } = req.body;
   await pool.execute(
-    "Insert into users(id,firstName,lastName,email,address) values (?,?,?,?,?)",
-    [id, firstName, lastName, email, address]
+    "Insert into users(firstName,lastName,email,address) values (?,?,?,?)",
+    [firstName, lastName, email, address]
   );
   return res.redirect("/");
 };

@@ -1,4 +1,3 @@
-
 // import mysql from 'mysql2/promise';
 
 // let connection;
@@ -19,15 +18,15 @@
 
 // export default connection;
 // src/configs/connectDB.js
-import mysql from 'mysql2/promise';
+// host: 'host.docker.internal' sử dụng docker
+// host: "localhost" chạy cụ bộ
+import mysql from "mysql2/promise";
 
 const pool = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    password: '', // nếu có mật khẩu MySQL thì thêm vào
-    database: 'nodejsbasic'
+  host: "localhost",
+  user: "root",
+  password: "", // nếu có mật khẩu MySQL thì thêm vào
+  database: "nodejsbasic",
 });
 
 export default pool;
-
-
