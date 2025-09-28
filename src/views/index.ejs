@@ -23,6 +23,8 @@
             <th>Id</th>
             <th>Last Name</th>
             <th>First Name</th>
+            <th>Address</th>
+            <th>Email</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -32,7 +34,9 @@
             <td><%=dataUser[i].id%></td>
             <td><%=dataUser[i].lastName%></td>
             <td><%=dataUser[i].firstName%></td>
-            <td>
+            <td><%=dataUser[i].address%></td>
+            <td><%=dataUser[i].email%></td>
+            <td class="actions">
               <a href="/detail/user/<%= dataUser[i].id %>">
                 <button>Detail</button>
               </a>
@@ -56,7 +60,7 @@
       </table>
     </div>
     <div class="create-user-container">
-      <form action="/create-new-user" method="post">
+      <form action="/create-new-user" method="post" id="userForm">
         <div><b>Create a new user</b></div>
         <!-- <div>
           <label>Id</label>
@@ -83,5 +87,40 @@
         </div>
       </form>
     </div>
+
+    <script>
+      document.getElementById("userForm").onsubmit = function (e) {
+        let lastName = document
+          .querySelector("input[name='lastName']")
+          .value.trim();
+        let firstName = document
+          .querySelector("input[name='firstName']")
+          .value.trim();
+        let email = document.querySelector("input[name='email']").value.trim();
+        let address = document
+          .querySelector("input[name='address']")
+          .value.trim();
+
+        if (
+          lastName === "" ||
+          firstName === "" ||
+          email === "" ||
+          address === ""
+        ) {
+          alert("Vui lòng nhập đầy đủ thông tin!");
+          e.preventDefault(); // chặn submit
+          return false;
+        }
+
+        let regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!regex.test(email)) {
+          alert("Email không hợp lệ!");
+          e.preventDefault();
+          return false;
+        }
+
+        return true;
+      };
+    </script>
   </body>
 </html>

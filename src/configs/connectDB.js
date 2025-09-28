@@ -23,7 +23,7 @@
 import mysql from "mysql2/promise";
 
 const pool = mysql.createPool({
-  host: "localhost",
+  host: "host.docker.internal",
   user: "root",
   password: "", // nếu có mật khẩu MySQL thì thêm vào
   database: "nodejsbasic",

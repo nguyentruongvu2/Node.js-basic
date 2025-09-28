@@ -13,7 +13,7 @@ RUN npm install
 # Copy toàn bộ source code vào container
 COPY . .
 
-# Mở cổng app (ví dụ 3000)
+# Mở cổng app 
 EXPOSE 8080
 
 # Lệnh chạy app
