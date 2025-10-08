@@ -3,7 +3,7 @@ import express from "express";
 import initWebRoute from "./route/web";
 import connection from "./configs/connectDB.js";
 import dotenv from "dotenv";
-
+import initAPIRoute from "./route/api.js";
 // require("dotenv").config()
 dotenv.config();
 const app = express();
@@ -16,7 +16,8 @@ app.use(express.json());
 ConfigViewEngine(app);
 // khởi tạo router
 initWebRoute(app);
-
+// khởi tạo api route
+initAPIRoute(app);
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });

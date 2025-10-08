@@ -11,6 +11,6 @@ services:
       - /usr/src/app/node_modules
     environment:
       DB_HOST: host.docker.internal
-      DB_USER: root
+      DB_USER: rootb
       DB_PASS: ""
       DB_NAME: nodejsbasic
