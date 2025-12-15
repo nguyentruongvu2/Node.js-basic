@@ -11,9 +11,6 @@
   <body>
     <div class="topnav">
       <a class="active" href="#home">Home</a>
-      <a href="#news">News</a>
-      <a href="#contact">Contact</a>
-      <a href="#about">About</a>
     </div>
     <div class="w3-container">
       <h2>List Users</h2>
@@ -21,10 +18,11 @@
         <thead>
           <tr class="w3-light-grey">
             <th>Id</th>
-            <th>Last Name</th>
-            <th>First Name</th>
-            <th>Address</th>
+            <th>Name</th>
+            <th>Gender</th>
             <th>Email</th>
+            <th>Phone</th>
+            <th>Class</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -32,19 +30,20 @@
           <% for(let i=0;i< dataUser.length;i++) { %>
           <tr>
             <td><%=dataUser[i].id%></td>
-            <td><%=dataUser[i].lastName%></td>
-            <td><%=dataUser[i].firstName%></td>
-            <td><%=dataUser[i].address%></td>
+            <td><%=dataUser[i].name%></td>
+            <td><%=dataUser[i].gender%></td>
             <td><%=dataUser[i].email%></td>
+            <td><%=dataUser[i].phone%></td>
+            <td><%=dataUser[i].class%></td>
             <td class="actions">
-              <a href="/detail/user/<%= dataUser[i].id %>">
+              <a href="/detail/students/<%= dataUser[i].id %>">
                 <button>Detail</button>
               </a>
-              <form action="/edit-user/<%= dataUser[i].id %>" method="GET">
-                <button type="submit">Edit</button>
-              </form>
+              <a href="/edit-students/<%= dataUser[i].id %>">
+                <button>Edit</button>
+              </a>
 
-              <form action="/delete-user" method="POST">
+              <form action="/delete-students" method="POST">
                 <input
                   type="text"
                   hidden
@@ -60,27 +59,31 @@
       </table>
     </div>
     <div class="create-user-container">
-      <form action="/create-new-user" method="post" id="userForm">
-        <div><b>Create a new user</b></div>
+      <form action="/students" method="post" id="userForm">
+        <div><b>Create a new students</b></div>
         <!-- <div>
           <label>Id</label>
           <input type="text" name="id" />
         </div> -->
         <div>
-          <label>LastName</label>
-          <input type="text" name="lastName" />
+          <label>Name</label>
+          <input type="text" name="name" />
         </div>
         <div>
-          <label>FristName</label>
-          <input type="text" name="firstName" />
+          <label>Gender</label>
+          <input type="text" name="gender" />
         </div>
         <div>
           <label>Email</label>
           <input type="email" name="email" />
         </div>
         <div>
-          <label>Address</label>
-          <input type="text" name="address" />
+          <label>Phone</label>
+          <input type="text" name="phone" />
+        </div>
+        <div>
+          <label>Class</label>
+          <input type="text" name="className" />
         </div>
         <div class="btn-submit">
           <button type="submit">Submit</button>
@@ -88,7 +91,7 @@
       </form>
     </div>
 
-    <script>
+    <!-- <script>
       document.getElementById("userForm").onsubmit = function (e) {
         let lastName = document
           .querySelector("input[name='lastName']")
@@ -121,6 +124,6 @@
 
         return true;
       };
-    </script>
+    </script> -->
   </body>
 </html>

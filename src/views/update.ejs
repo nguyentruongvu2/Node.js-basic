@@ -8,22 +8,26 @@
   </head>
   <body>
     <div class="Update-user">
-      <form action="/update-user" method="POST">
+      <form action="/update-students" method="POST">
         <div>
-          <label>Last name</label>
-          <input name="lastName" value="<%=dataUser.lastName %>" />
+          <label>Name</label>
+          <input name="name" value="<%=dataUser.name %>" />
         </div>
         <div>
-          <label>First name</label>
-          <input name="firstName" value="<%=dataUser.firstName %>" />
+          <label>Gender</label>
+          <input name="gender" value="<%=dataUser.gender %>" />
         </div>
         <div>
           <label>Email</label>
           <input name="email" value="<%=dataUser.email%>" />
         </div>
         <div>
-          <label>Address</label>
-          <input name="address" value="<%=dataUser.address %>" />
+          <label>Phone</label>
+          <input name="phone" value="<%=dataUser.phone %>" />
+        </div>
+        <div>
+          <label>Class</label>
+          <input name="className" value="<%=dataUser.class %>" />
         </div>
         <input type="text" name="id" hidden value="<%=dataUser.id %>" />
         <div>

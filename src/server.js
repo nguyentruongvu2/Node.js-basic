@@ -7,8 +7,14 @@ import initAPIRoute from "./route/api.js";
 // require("dotenv").config()
 dotenv.config();
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8080;
 console.log("check port", port);
+
+// Test kết nối database
+connection
+  .query("SELECT 1")
+  .then(() => console.log("✓ Database connected successfully!"))
+  .catch((err) => console.error("✗ Database connection error:", err.message));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());

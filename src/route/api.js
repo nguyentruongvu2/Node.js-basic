@@ -4,10 +4,11 @@ import APIcontroller from "../controller/APIcontroller.js";
 let router = express.Router();
 
 const initAPIRoute = (app) => {
-  router.get("/users", APIcontroller.getAllUser);
-  router.post("/create-users", APIcontroller.createNewUser);
-  router.put("/update-users", APIcontroller.updateUser);
-  router.delete("/delete-users/:id", APIcontroller.deleteUser);
-  return app.use("/api/v1/", router);
+  router.get("/students", APIcontroller.getAllUser);
+  router.get("/students/:id", APIcontroller.getDetailUser);
+  router.post("/students", APIcontroller.createNewUser);
+  router.put("/students/:id", APIcontroller.updateUser);
+  router.delete("/students/:id", APIcontroller.deleteUser);
+  return app.use("/api", router);
 };
 export default initAPIRoute;

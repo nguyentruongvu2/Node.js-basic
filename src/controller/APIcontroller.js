@@ -1,54 +1,98 @@
 import pool from "../configs/connectDB.js";
+
 let getAllUser = async (req, res) => {
-  const [rows, fields] = await pool.query("SELECT * FROM users ");
+  const [rows, fields] = await pool.query("SELECT * FROM student ");
   return res.status(200).json({
     message: "ok",
     data: rows,
   });
 };
 
+let getDetailUser = async (req, res) => {
+  let userId = req.params.id;
+  let [user] = await pool.query(`select * from student where id = ?`, [userId]);
+
+  if (!user || user.length === 0) {
+    return res.status(404).json({
+      message: "Student not found",
+      data: null,
+    });
+  }
+
+  return res.status(200).json({
+    message: "ok",
+    data: user,
+  });
+};
+
 let createNewUser = async (req, res) => {
-  let { firstName, lastName, email, address } = req.body;
-  if (!firstName || !lastName || !email || !address) {
+  let { name, gender, email, phone, className } = req.body;
+  if (!name || !gender || !email || !phone || !className) {
     return res.status(200).json({
       message: "Missing data",
     });
   }
   await pool.execute(
-    "Insert into users(firstName,lastName,email,address) values (?,?,?,?)",
-    [firstName, lastName, email, address]
+    "Insert into student(name,gender,email,phone,class) values (?,?,?,?,?)",
+    [name, gender, email, phone, className]
   );
   return res.status(200).json({
-    message: "ok",
+    message: "Thêm mới thành công",
   });
 };
 
 let updateUser = async (req, res) => {
-  let { id, firstName, lastName, email, address } = req.body;
-  if (!firstName || !lastName || !email || !address || !id) {
-    return res.status(200).json({
+  let { id, name, gender, email, phone, className } = req.body;
+  if (!name || !gender || !email || !phone || !className || !id) {
+    return res.status(400).json({
       message: "Missing data",
     });
   }
+
+  // Kiểm tra id có tồn tại không
+  let [existing] = await pool.query("select * from student where id = ?", [id]);
+  if (!existing || existing.length === 0) {
+    return res.status(404).json({
+      message: "Student not found",
+    });
+  }
+
   await pool.execute(
-    "update users set firstName=?, lastName=?, email=?, address=? where id=?",
-    [firstName, lastName, email, address, id]
+    "update student set name=?, gender=?, email=?, phone=?, class=? where id=?",
+    [name, gender, email, phone, className, id]
   );
   return res.status(200).json({
-    message: "ok",
+    message: "Cập nhật thành công",
   });
 };
 
 let deleteUser = async (req, res) => {
   let userId = req.params.id;
   if (!userId) {
-    return res.status(200).json({
+    return res.status(400).json({
       message: "Missing data",
     });
   }
-  await pool.execute("delete from users where id = ?", [userId]);
+
+  // Kiểm tra id có tồn tại không
+  let [existing] = await pool.query("select * from student where id = ?", [
+    userId,
+  ]);
+  if (!existing || existing.length === 0) {
+    return res.status(404).json({
+      message: "Student not found",
+    });
+  }
+
+  await pool.execute("delete from student where id = ?", [userId]);
   return res.status(200).json({
-    message: "ok",
+    message: "Xóa thành công",
   });
 };
-export default { getAllUser, createNewUser, updateUser, deleteUser };
+export default {
+  getAllUser,
+  getDetailUser,
+  createNewUser,
+  updateUser,
+  deleteUser,
+};
