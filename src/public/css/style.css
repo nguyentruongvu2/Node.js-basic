@@ -4,6 +4,59 @@
   overflow: hidden;
 }
 
+/* CSS cho nút Thêm */
+.add-button-container {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.add-btn {
+  background-color: #04aa6d;
+  color: white;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.add-btn:hover {
+  background-color: #039959;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+.add-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* CSS cho bảng màu xanh lá cây */
+.w3-table-all {
+  border: 2px solid #28a745 !important;
+}
+
+.w3-table-all thead tr {
+  background-color: #28a745 !important;
+  color: white !important;
+}
+
+.w3-table-all tbody tr {
+  background-color: #d4edda !important;
+}
+
+.w3-table-all tbody tr:hover {
+  background-color: #c3e6cb !important;
+}
+
+.w3-table-all th,
+.w3-table-all td {
+  border: 1px solid #28a745 !important;
+}
+
 /* Style the links inside the navigation bar */
 .topnav a {
   float: left;
@@ -59,6 +112,10 @@ td button:hover {
   background-color: #45a049;
 }
 
+.actions button:hover {
+  background-color: #c82333;
+}
+
 .actions {
   display: flex; /* xếp ngang */
   align-items: center; /* căn giữa theo chiều dọc */
@@ -76,6 +133,9 @@ td button:hover {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  background-color: #dc3545;
+  color: white;
+  transition: background-color 0.2s ease;
 }
 
 /* 
@@ -119,7 +179,7 @@ css cho from cập nhật
 }
 
 .btn-save {
-  background-color: #4a90e2;
+  background-color: #dc3545;
   color: #fff;
   padding: 10px 16px;
   font-size: 15px;
@@ -131,7 +191,7 @@ css cho from cập nhật
 }
 
 .btn-save:hover {
-  background-color: #357ab7;
+  background-color: #c82333;
 }
 
 /*  css cho from create user */
@@ -186,7 +246,7 @@ css cho from cập nhật
 }
 
 .btn-submit button {
-  background-color: #4a90e2;
+  background-color: #dc3545;
   color: #fff;
   padding: 10px 18px;
   font-size: 15px;
@@ -198,5 +258,5 @@ css cho from cập nhật
 }
 
 .btn-submit button:hover {
-  background-color: #357ab7;
+  background-color: #c82333;
 }

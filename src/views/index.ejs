@@ -58,7 +58,14 @@
         </tbody>
       </table>
     </div>
-    <div class="create-user-container">
+    <div class="add-button-container">
+      <button id="toggleFormBtn" class="add-btn">+ Thêm sinh viên</button>
+    </div>
+    <div
+      class="create-user-container"
+      id="createFormContainer"
+      style="display: none"
+    >
       <form action="/students" method="post" id="userForm">
         <div><b>Create a new students</b></div>
         <!-- <div>
@@ -125,5 +132,20 @@
         return true;
       };
     </script> -->
+    <script>
+      // Toggle form khi nhấn nút Thêm
+      document
+        .getElementById("toggleFormBtn")
+        .addEventListener("click", function () {
+          const formContainer = document.getElementById("createFormContainer");
+          if (formContainer.style.display === "none") {
+            formContainer.style.display = "block";
+            this.textContent = "Ẩn";
+          } else {
+            formContainer.style.display = "none";
+            this.textContent = "+ Thêm Student";
+          }
+        });
+    </script>
   </body>
 </html>
